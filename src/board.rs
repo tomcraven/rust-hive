@@ -27,6 +27,12 @@ impl Board {
     }
 
     pub fn place_tile(&mut self, tile: Rc<Tile>, position: Axial, player: PlayerNumber) {
+        assert!(
+            self.get_possible_tile_placements(player)
+                .contains(&position),
+            "cannot place tile at position"
+        );
+
         let placed_tile = Rc::new(PlacedTile::new(tile, position, player));
         self.tiles.insert(position, placed_tile.clone());
         self.render.push(placed_tile.clone());
