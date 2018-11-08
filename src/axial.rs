@@ -15,8 +15,8 @@ impl fmt::Display for Axial {
 
 impl Ord for Axial {
     fn cmp(&self, other: &Axial) -> Ordering {
-        match other.q.cmp(&self.q) {
-            Ordering::Equal => other.r.cmp(&self.r),
+        match other.r.cmp(&self.r) {
+            Ordering::Equal => other.q.cmp(&self.q),
             Ordering::Greater => Ordering::Greater,
             Ordering::Less => Ordering::Less,
         }
