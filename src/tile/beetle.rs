@@ -1,9 +1,9 @@
 use tile::Tile;
 
-pub struct Ant {}
+pub struct Beetle {}
 
-impl Tile for Ant {
+impl Tile for Beetle {
     fn render(&self) -> char {
-        'A'
+        'B'
     }
 }

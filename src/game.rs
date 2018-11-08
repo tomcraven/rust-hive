@@ -1,5 +1,9 @@
-use player::*;
+use axial::Axial;
 use board::*;
+use player::PlayerNumber;
+use player::*;
+use std::rc::Rc;
+use tile::*;
 
 pub struct Game {
     player1: Player,
@@ -17,9 +21,38 @@ impl Game {
     }
 
     pub fn go(&mut self) {
-        let (tile, position) = self.player1.get_tile_placement(BoardProxy::new(&mut self.board));
+        self.board
+            .place_tile(queen(), Axial::zero(), PlayerNumber::One);
+        self.board
+            .place_tile(beetle(), Axial::zero().south(), PlayerNumber::One);
+        self.board
+            .place_tile(spider(), Axial::zero().south().south(), PlayerNumber::One);
+        self.board.place_tile(
+            ant(),
+            Axial::zero().south().south().south(),
+            PlayerNumber::One,
+        );
+        self.board.place_tile(
+            ant(),
+            Axial::zero().south().south().south().south_west(),
+            PlayerNumber::One,
+        );
+        self.board.place_tile(
+            ant(),
+            Axial::zero().south().south().south().north_west(),
+            PlayerNumber::One,
+        );
+        self.board.place_tile(
+            ant(),
+            Axial::zero().south().south().south().south_east(),
+            PlayerNumber::One,
+        );
 
-        self.board.place_tile(tile, position, PlayerNumber::One);
+        self.board.place_tile(
+            grass_hopper(),
+            Axial::zero().south().north_east(),
+            PlayerNumber::One,
+        );
 
         self.board.render();
     }
