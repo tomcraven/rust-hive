@@ -31,6 +31,10 @@ pub type Tile = (Colour, TileType);
 pub struct Tiles(pub HashMap<Axial, Tile>);
 
 impl Tiles {
+    pub fn with_capacity(cap: usize) -> Self {
+        Tiles(HashMap::with_capacity(cap))
+    }
+
     pub fn len(&self) -> usize {
         self.0.len()
     }
